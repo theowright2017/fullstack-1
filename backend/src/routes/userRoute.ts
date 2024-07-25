@@ -20,7 +20,7 @@ userRouter.post(
 );
 
 userRouter.post(
-    'users/login',
+    '/users/login',
     body('email').exists().isString(),
     body('password').exists().isString(),
     login
@@ -29,7 +29,7 @@ userRouter.post(
 userRouter.get("/users/:id", protect, getUser);
 
 userRouter.put(
-	"users/:id",
+	"/users/:id",
 	body("name").isString(),
 	body("email").isString(),
 	body("password").isString(),
@@ -37,6 +37,6 @@ userRouter.put(
 	updateUser
 );
 
-userRouter.delete("users/:id", protect, deleteUser);
+userRouter.delete("/users/:id", protect, deleteUser);
 
 export default userRouter

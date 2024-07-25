@@ -6,6 +6,7 @@ import {
 	deleteExam,
 	getExam,
 	updateExam,
+	getAllExams
 } from "../handlers/exams";
 
 const examRouter = express.Router();
@@ -20,8 +21,10 @@ examRouter.post(
 
 examRouter.get("/exams/:id", protect, getExam);
 
-examRouter.put("exams/:id", protect, updateExam);
+examRouter.get('/exams', protect, getAllExams)
 
-examRouter.delete("exmas/:id", protect, deleteExam);
+examRouter.put("/exams/:id", protect, updateExam);
+
+examRouter.delete("/exmas/:id", protect, deleteExam);
 
 export default examRouter;

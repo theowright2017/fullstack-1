@@ -1,7 +1,7 @@
 import express from "express";
 import { body } from "express-validator";
 import { protect } from "../helpers/auth";
-import { createRoom, deleteRoom, getRoom, updateRoom } from "../handlers/room";
+import { createRoom, deleteRoom, getAllRooms, getRoom, updateRoom } from "../handlers/room";
 
 const roomRouter = express.Router();
 
@@ -14,6 +14,8 @@ roomRouter.post(
 )
 
 roomRouter.get('/rooms/:id', protect, getRoom)
+
+roomRouter.get('/rooms', protect, getAllRooms)
 
 roomRouter.put(
     '/rooms/:id',

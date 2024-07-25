@@ -4,6 +4,7 @@ import { protect } from "../helpers/auth";
 import {
 	createSession,
 	deleteSession,
+	getAllSessions,
 	getSession,
 	updateSession,
 } from "../handlers/session";
@@ -22,6 +23,8 @@ sessionRouter.post(
 );
 
 sessionRouter.get("/sessions/:id", protect, getSession);
+
+sessionRouter.get("/sessions", protect, getAllSessions);
 
 sessionRouter.put(
 	"/sessions/:id",

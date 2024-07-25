@@ -1,7 +1,13 @@
 import express from "express";
 import { body } from "express-validator";
 import { protect } from "../helpers/auth";
-import { createCohort, getCohort, updateCohort, deleteCohort } from "../handlers/cohort";
+import {
+	createCohort,
+	getCohort,
+	updateCohort,
+	deleteCohort,
+	getAllCohorts,
+} from "../handlers/cohort";
 
 const cohortRouter = express.Router();
 
@@ -15,6 +21,8 @@ cohortRouter.post(
 );
 
 cohortRouter.get("/cohorts/:id", protect, getCohort);
+
+cohortRouter.get("/cohorts", protect, getAllCohorts);
 
 cohortRouter.put(
 	"/cohorts/:id",

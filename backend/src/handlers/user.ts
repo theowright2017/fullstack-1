@@ -13,7 +13,7 @@ export const createNewUser = async (req, res, next) => {
 		});
 		res.json({ id: user.id, name: user.name, email: user.email });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -38,7 +38,7 @@ export const login = async (req, res, next) => {
 		const token = createJWT(user);
 		res.json({ token });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -51,7 +51,7 @@ export const getUser = async (req, res, next) => {
 		});
 		res.json({ user });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -68,7 +68,7 @@ export const updateUser = async (req, res, next) => {
 		});
 		res.json({ user });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -81,6 +81,6 @@ export const deleteUser = async (req, res, next) => {
 		});
 		res.json({ user });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };

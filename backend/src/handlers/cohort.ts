@@ -11,7 +11,7 @@ export const createCohort = async (req, res, next) => {
 
 		res.json({ cohort });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -24,7 +24,16 @@ export const getCohort = async (req, res, next) => {
 		});
 		res.json({ cohort });
 	} catch (err) {
-		console.error(err);
+		next(err)
+	}
+};
+
+export const getAllCohorts = async (req, res, next) => {
+	try {
+		const cohort = await prisma.cohort.findMany();
+		res.json({ cohort });
+	} catch (err) {
+		next(err)
 	}
 };
 
@@ -40,7 +49,7 @@ export const updateCohort = async (req, res, next) => {
 		});
 		res.json({ cohort });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -53,6 +62,6 @@ export const deleteCohort = async (req, res, next) => {
 		});
 		res.json({ cohort });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };

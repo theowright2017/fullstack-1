@@ -11,7 +11,7 @@ export const createStudent = async (req, res, next) => {
 
 		res.json({ student });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -24,7 +24,16 @@ export const getStudent = async (req, res, next) => {
 		});
 		res.json({ student });
 	} catch (err) {
-		console.error(err);
+		next(err)
+	}
+};
+
+export const getAllStudents = async (req, res, next) => {
+	try {
+		const student = await prisma.student.findMany();
+		res.json({ student });
+	} catch (err) {
+		next(err)
 	}
 };
 
@@ -42,7 +51,7 @@ export const updateStudent = async (req, res, next) => {
 		});
 		res.json({ student });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -55,6 +64,6 @@ export const deleteStudent = async (req, res, next) => {
 		});
 		res.json({ student });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };

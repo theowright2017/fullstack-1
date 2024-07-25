@@ -10,7 +10,7 @@ export const createStaff = async (req, res, next) => {
 		});
 		res.json({ staff });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -23,7 +23,16 @@ export const getStaff = async (req, res, next) => {
 		});
 		res.json({ staff });
 	} catch (err) {
-		console.error(err);
+		next(err)
+	}
+};
+
+export const getAllStaff = async (req, res, next) => {
+	try {
+		const staff = await prisma.staff.findMany();
+		res.json({ staff });
+	} catch (err) {
+		next(err)
 	}
 };
 
@@ -41,7 +50,7 @@ export const updateStaff = async (req, res, next) => {
 		});
 		res.json({ staff });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -54,6 +63,6 @@ export const deleteStaff = async (req, res, next) => {
 		});
 		res.json({ staff });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };

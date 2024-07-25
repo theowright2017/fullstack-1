@@ -5,7 +5,7 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { handleGET, handlePOST } from "../api/handleREST";
 import StudentModal from "./modal/StudentModal";
 
-const studentColumns = [
+const studentColumns: GridColDef<(typeof rows)[number]>[]  = [
 	{ field: "id", headerName: "ID", width: 90 },
 	{
 		field: "name",
@@ -34,9 +34,9 @@ export default function StudentsTable() {
 	const { isPending, isError, data, error } = useQuery({
 		queryKey: ["students"],
 		queryFn: async () => {
-			const { students } = await handleGET("/students");
+			const { student } = await handleGET("/students");
 
-			return students;
+			return student;
 		},
 	});
 
@@ -54,7 +54,7 @@ export default function StudentsTable() {
 		<>
 			<Box sx={{ height: 200, width: "50%", border: "2px solid purple" }}>
 				<DataGrid
-					rows={data}
+					rows={data ?? []}
 					columns={studentColumns}
 					initialState={{
 						pagination: {

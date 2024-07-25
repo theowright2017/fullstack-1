@@ -14,7 +14,7 @@ export const createSession = async (req, res, next) => {
 
 		res.json({ session });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -27,7 +27,7 @@ export const deleteSession = async (req, res, next) => {
         });
         res.json({ session });
     } catch (err) {
-        console.error(err);
+        next(err)
     }
 };
 
@@ -40,7 +40,16 @@ export const getSession = async (req, res, next) => {
         });
         res.json({ session });
     } catch (err) {
-        console.error(err);
+        next(err)
+    }
+};
+
+export const getAllSessions = async (req, res, next) => {
+    try {
+        const session = await prisma.session.findMany();
+        res.json({ session });
+    } catch (err) {
+        next(err)
     }
 };
 
@@ -56,6 +65,6 @@ export const updateSession = async (req, res, next) => {
         });
         res.json({ session });
     } catch (err) {
-        console.error(err);
+        next(err)
     }   
 };

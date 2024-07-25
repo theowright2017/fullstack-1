@@ -11,7 +11,7 @@ export const createRoom = async (req, res, next) => {
 
 		res.json({ room });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -24,7 +24,16 @@ export const getRoom = async (req, res, next) => {
 		});
 		res.json({ room });
 	} catch (err) {
-		console.error(err);
+		next(err)
+	}
+};
+
+export const getAllRooms = async (req, res, next) => {
+	try {
+		const room = await prisma.room.findMany();
+		res.json({ room });
+	} catch (err) {
+		next(err)
 	}
 };
 
@@ -41,7 +50,7 @@ export const updateRoom = async (req, res, next) => {
 		});
 		res.json({ room });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };
 
@@ -54,6 +63,6 @@ export const deleteRoom = async (req, res, next) => {
 		});
 		res.json({ room });
 	} catch (err) {
-		console.error(err);
+		next(err)
 	}
 };

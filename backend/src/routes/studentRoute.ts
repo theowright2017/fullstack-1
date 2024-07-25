@@ -6,6 +6,7 @@ import {
 	getStudent,
 	updateStudent,
 	deleteStudent,
+	getAllStudents,
 } from "../handlers/student";
 
 const studentRouter = express.Router();
@@ -19,6 +20,8 @@ studentRouter.post(
 );
 
 studentRouter.get("/students/:id", protect, getStudent);
+
+studentRouter.get("/students", protect, getAllStudents);
 
 studentRouter.put(
 	"/students/:id",

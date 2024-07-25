@@ -1,8 +1,9 @@
 import axios from 'axios'
 
-const apiPort = 3500
+const apiPort = 5500
 
-const authToken = process.env.AUTH_TOKEN
+const authToken = import.meta.env.VITE_AUTH_TOKEN
+
 
 export const handlePOST = async (url: string, data: any) => {
 

@@ -5,7 +5,7 @@ import { useQueryClient, useQuery, useMutation } from "@tanstack/react-query";
 import { handleGET, handlePOST } from "../api/handleREST";
 import CohortsModal from "./modal/CohortsModal";
 
-const cohortsColumns = [
+const cohortsColumns: GridColDef<(typeof rows)[number]>[]  = [
 	{ field: "id", headerName: "ID", width: 90 },
 	{
 		field: "name",
@@ -17,13 +17,11 @@ const cohortsColumns = [
 		field: "examId",
 		headerName: "Exam Id",
 		width: 150,
-		type: "id",
 		editable: true,
 	},
 	{
 		field: "sessionId",
 		headerName: "Session Id",
-		type: "id",
 		width: 110,
 		editable: true,
 	},
@@ -48,9 +46,9 @@ export default function CohortsTable() {
 	const { isPending, isError, data, error } = useQuery({
 		queryKey: ["cohorts"],
 		queryFn: async () => {
-			const { cohorts } = await handleGET("/cohorts");
+			const { cohort } = await handleGET("/cohorts");
 
-			return cohorts;
+			return cohort;
 		},
 	});
 
@@ -65,7 +63,7 @@ export default function CohortsTable() {
 		<>
 			<Box sx={{ height: 200, width: "50%", border: "2px solid purple" }}>
 				<DataGrid
-					rows={data}
+					rows={data ?? []}
 					columns={cohortsColumns}
 					initialState={{
 						pagination: {

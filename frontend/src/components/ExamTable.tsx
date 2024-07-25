@@ -5,7 +5,7 @@ import ExamModal from './modal/ExamModal';
 import { useQueryClient, useMutation, useQuery } from '@tanstack/react-query';
 import { handleGET, handlePOST } from '../api/handleREST';
 
-const examColumns = [
+const examColumns: GridColDef<(typeof rows)[number]>[]  = [
   { field: 'id', headerName: 'ID', width: 90 },
   {
     field: 'name',
@@ -58,7 +58,7 @@ export default function ExamTable() {
 		<>
 			<Box sx={{ height: 200, width: "100%", border: "2px solid purple" }}>
 				<DataGrid
-					rows={data}
+					rows={data ?? []}
 					columns={examColumns}
 					initialState={{
 						pagination: {

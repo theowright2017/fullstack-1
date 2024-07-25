@@ -18,11 +18,16 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api', validate, examRouter);
-app.use('/api', validate, userRouter);
 app.use('/api', validate, cohortRouter);
 app.use('/api', validate, studentRouter);
 app.use('/api', validate, sessionRouter);
 app.use('/api', validate, roomRouter);
 app.use('/api', validate, staffRouter);
+app.use('/api', validate, userRouter);
+
+app.use((err, req, res, next)=>{
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+})
 
 export default app;

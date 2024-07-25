@@ -1,7 +1,7 @@
 import express from "express";
 import { body } from "express-validator";
 import { protect } from "../helpers/auth";
-import { createStaff, getStaff, updateStaff, deleteStaff } from "../handlers/staff";
+import { createStaff, getStaff, updateStaff, deleteStaff, getAllStaff } from "../handlers/staff";
 
 const staffRouter = express.Router();
 
@@ -14,6 +14,8 @@ staffRouter.post(
 )
 
 staffRouter.get('/staff/:id', protect, getStaff)
+
+staffRouter.get('/staff', protect, getAllStaff)
 
 staffRouter.put(
     '/staff/:id',
